@@ -28,6 +28,8 @@ public class Otros extends NoPerecedero{
         }
     }
 
+    @Override
+
     public String volcar(){
         return null;
     }

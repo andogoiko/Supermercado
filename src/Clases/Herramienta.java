@@ -28,6 +28,8 @@ public class Herramienta extends NoPerecedero implements Enviable {
         return 0;
     }
 
+    @Override
+
     public String volcar(){
         return null;
     }

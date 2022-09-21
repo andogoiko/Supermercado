@@ -78,7 +78,6 @@ public abstract class Producto {
     }
 
     public Producto(){
-
     }
 
     public double getIva() {
@@ -130,18 +129,37 @@ public abstract class Producto {
     }
 
     public double calcularPrecioIVA(){
-        return 0;
+
+        return (precio * getIva()) + precio;
     }
 
     public void imprimir(){
-
+        System.out.printf("Producto número: %i\n", codigo);
+        System.out.printf("Nombre del producto: %s\n", nombre);
+        System.out.printf("Precio del producto: %d\n", precio);
+        System.out.printf("Producto número: %i\n", cantidad);
+        System.out.printf("Producto número: %d\n", peso);
     }
 
     public void imprimirEnvio(){
 
+        System.out.printf("Producto: %s\n", nombre);
+        System.out.printf("Producto número: %d\n", peso);
+        System.out.printf("Precio del producto: %d\n", precio);
+        System.out.printf("Precio IVA incluído: %d\n", calcularPrecioIVA());
+
     }
 
     public String volcar(){
-        return "";
+
+        String productInfo = "";
+
+        productInfo = productInfo + "Producto número: " +  codigo + "\n";
+        productInfo = productInfo + "Nombre del producto: " + nombre + "\n";
+        productInfo = productInfo + "Precio del producto: " + precio + "\n";
+        productInfo = productInfo + "Producto número: " + cantidad + "\n";
+        productInfo = productInfo + "Producto número: " + peso + "\n";
+
+        return productInfo;
     }
 }

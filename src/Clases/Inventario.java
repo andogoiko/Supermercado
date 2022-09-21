@@ -45,7 +45,7 @@ public class Inventario implements Iterable<Producto>{
         return null;
     }
 
-    public static void actualizarCantidad(int codigo, double cantidad){
+    public static void actualizarCantidad(int codigo, int cantidad){
 
     }
 

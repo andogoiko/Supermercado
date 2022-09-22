@@ -8,6 +8,8 @@ public class Main {
 
     public static void main(String[] args){
 
+        Inventario invent = Inventario.getInstance();
+
         int opcion = 1;
 
         System.out.println("========================================================================");
@@ -130,8 +132,6 @@ public class Main {
         int opcion;
 
         while (true){
-
-            System.out.println("Opción?");
 
             try{
                 opcion = scannerMenu.nextInt();

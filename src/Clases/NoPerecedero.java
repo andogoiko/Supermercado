@@ -12,7 +12,10 @@ public abstract class NoPerecedero extends Producto{
         super(in);
     }
 
-    public void Imprimir(){
+    @Override
 
+    public void imprimir(){
+
+        super.imprimir();
     }
 }

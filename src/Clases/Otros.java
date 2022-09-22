@@ -23,6 +23,7 @@ public class Otros extends NoPerecedero{
                 break;
             }catch (Exception e){
                 System.out.println("Categoria incorrecta, vuelva a introducirla");
+                in.nextLine();
             }
 
         }
@@ -31,11 +32,20 @@ public class Otros extends NoPerecedero{
     @Override
 
     public String volcar(){
-        return null;
+
+        String respuesta = super.volcar();
+
+        respuesta = respuesta + "Categoría del producto: " + categoria + "\n";
+
+        return respuesta;
     }
 
-    public void imprimir(){
+    @Override
 
+    public void imprimir(){
+        super.imprimir();
+
+        System.out.printf("Categoría: %d\n", categoria);
     }
 
 }

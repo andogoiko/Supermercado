@@ -24,6 +24,7 @@ public abstract class Perecedero extends Producto implements Enviable {
                 break;
             }catch (Exception e){
                 System.out.println("fecha incorrecta, vuelva a introducirla");
+                in.nextLine();
             }
 
         }
@@ -33,33 +34,48 @@ public abstract class Perecedero extends Producto implements Enviable {
     @Override
 
     public double tarifaEnvio(){
-        return 0;
+
+        return super.calcularPrecioIVA();
     }
 
-    public void imprimir(){
+    @Override
 
+    public void imprimir(){
+        super.imprimir();
+
+        System.out.printf("fecha de caducidad: %d\n", fechacad);
     }
 
     @Override
 
     public String volcar(){
-        return null;
+
+        String respuesta = super.volcar();
+
+        respuesta = respuesta + "Fecha de caducidad del producto: " + fechacad + "\n";
+
+
+        return respuesta;
     }
 
-    public void imprimirEnvio(){
+    @Override
 
+    public void imprimirEnvio(){
+        super.imprimirEnvio();
     }
 
     @Override
 
     public boolean envioFragil(){
+
         return false;
     }
 
     @Override
 
     public double getPeso(){
-        return 0;
+
+        return super.getPeso();
     }
 
 }

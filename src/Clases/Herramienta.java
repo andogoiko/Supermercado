@@ -19,33 +19,41 @@ public class Herramienta extends NoPerecedero implements Enviable {
     @Override
 
     public boolean envioFragil(){
+
         return false;
     }
 
     @Override
 
     public double tarifaEnvio(){
-        return 0;
+
+        return super.calcularPrecioIVA();
     }
 
     @Override
 
     public String volcar(){
-        return null;
+
+        return super.volcar();
     }
+
+    @Override
 
     public void imprimir(){
-
+        super.imprimir();
     }
 
-    public void imprimirEnvio(){
+    @Override
 
+    public void imprimirEnvio(){
+        super.imprimirEnvio();
     }
 
     @Override
 
     public double getPeso(){
-        return 0;
+
+        return super.getPeso();
     }
 
 }

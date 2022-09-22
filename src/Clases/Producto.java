@@ -28,6 +28,7 @@ public abstract class Producto {
                 break;
             }catch (Exception e){
                 System.out.println("Código incorrecto, vuelva a introducirlo");
+                in.nextLine();
             }
 
         }
@@ -39,6 +40,7 @@ public abstract class Producto {
                 break;
             }catch (Exception e){
                 System.out.println("nombre incorrecto, vuelva a introducirlo");
+                in.nextLine();
             }
 
         }
@@ -50,6 +52,7 @@ public abstract class Producto {
                 break;
             }catch (Exception e){
                 System.out.println("Precio incorrecto, vuelva a introducirlo");
+                in.nextLine();
             }
 
         }
@@ -61,6 +64,7 @@ public abstract class Producto {
                 break;
             }catch (Exception e){
                 System.out.println("Cantidad incorrecta, vuelva a introducirlo");
+                in.nextLine();
             }
 
         }
@@ -72,6 +76,7 @@ public abstract class Producto {
                 break;
             }catch (Exception e){
                 System.out.println("Peso incorrecto, vuelva a introducirlo");
+                in.nextLine();
             }
 
         }
@@ -137,8 +142,8 @@ public abstract class Producto {
         System.out.printf("Producto número: %i\n", codigo);
         System.out.printf("Nombre del producto: %s\n", nombre);
         System.out.printf("Precio del producto: %d\n", precio);
-        System.out.printf("Producto número: %i\n", cantidad);
-        System.out.printf("Producto número: %d\n", peso);
+        System.out.printf("stock: %i\n", cantidad);
+        System.out.printf("peso: %d\n", peso);
     }
 
     public void imprimirEnvio(){

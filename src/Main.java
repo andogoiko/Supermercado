@@ -8,7 +8,7 @@ public class Main {
 
     public static void main(String[] args){
 
-        Inventario invent = Inventario.getInstance();
+        Inventario.getInstance();
 
         int opcion = 1;
 

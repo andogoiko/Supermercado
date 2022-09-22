@@ -21,6 +21,8 @@ public abstract class Producto {
 
     public Producto(Scanner in){
 
+        System.out.println("Introduce un código:");
+
         while (true){
 
             try{
@@ -32,6 +34,8 @@ public abstract class Producto {
             }
 
         }
+
+        System.out.println("Introduce un nombre:");
 
         while (true){
 
@@ -45,6 +49,8 @@ public abstract class Producto {
 
         }
 
+        System.out.println("Introduce un precio:");
+
         while (true){
 
             try{
@@ -57,6 +63,8 @@ public abstract class Producto {
 
         }
 
+        System.out.println("Introduce una cantidad:");
+
         while (true){
 
             try{
@@ -68,6 +76,8 @@ public abstract class Producto {
             }
 
         }
+
+        System.out.println("Introduce un peso:");
 
         while (true){
 

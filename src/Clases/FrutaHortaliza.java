@@ -15,6 +15,8 @@ public class FrutaHortaliza extends Perecedero{
     public FrutaHortaliza(Scanner in) {
         super(in);
 
+        System.out.println("Introduce un origen:");
+
         while (true){
 
             try{

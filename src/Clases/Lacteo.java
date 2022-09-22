@@ -15,6 +15,8 @@ public class Lacteo extends  Perecedero{
     public Lacteo(Scanner in) {
         super(in);
 
+        System.out.println("Introduce un lote:");
+
         while (true){
 
             try{

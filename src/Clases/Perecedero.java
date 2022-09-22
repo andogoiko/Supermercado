@@ -17,6 +17,8 @@ public abstract class Perecedero extends Producto implements Enviable {
     public Perecedero (Scanner in){
         super(in);
 
+        System.out.println("Introduce una fecha de caducidad:");
+
         while (true){
 
             try{

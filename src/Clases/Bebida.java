@@ -15,6 +15,8 @@ public class Bebida extends Perecedero{
     public Bebida(Scanner in) {
         super(in);
 
+        System.out.println("Introduce una graduación:");
+
         while (true){
 
             try{

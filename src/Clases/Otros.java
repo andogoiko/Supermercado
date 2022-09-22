@@ -16,6 +16,8 @@ public class Otros extends NoPerecedero{
     public Otros(Scanner in){
         super(in);
 
+        System.out.println("Introduce una categoría:");
+
         while (true){
 
             try{

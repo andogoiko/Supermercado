@@ -50,7 +50,7 @@ public class FrutaHortaliza extends Perecedero{
     public void imprimir(){
         super.imprimir();
 
-        System.out.printf("origen: %s\n", origen);
+        System.out.printf("Fruta de origen: %s\n", origen);
     }
 
     @Override

@@ -142,7 +142,7 @@ public class Inventario implements Iterable<Producto>{
     public static void mostrarProductos(){
         listaProductos.forEach(producto -> {
             if(producto != null){
-                System.out.printf("Código: %s, Nombre: %s, peso: %s, precio: %s, stock: %s\n", producto.getCodigo(), producto.getNombre(), producto.getPeso(), producto.getPrecio(), producto.getCantidad());
+                producto.imprimir();
             }
         });
 

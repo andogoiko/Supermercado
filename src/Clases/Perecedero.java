@@ -46,7 +46,7 @@ public abstract class Perecedero extends Producto implements Enviable {
     public void imprimir(){
         super.imprimir();
 
-        System.out.printf("fecha de caducidad: %s\n", fechacad);
+        System.out.printf("(Producto perecedero: %s), ", fechacad);
     }
 
     @Override

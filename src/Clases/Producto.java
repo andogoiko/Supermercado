@@ -139,11 +139,10 @@ public abstract class Producto {
     }
 
     public void imprimir(){
-        System.out.printf("Producto número: %d\n", codigo);
-        System.out.printf("Nombre del producto: %s\n", nombre);
-        System.out.printf("Precio del producto: %f\n", precio);
-        System.out.printf("stock: %d\n", cantidad);
-        System.out.printf("peso: %f\n", peso);
+        System.out.printf("Id: %d, ", codigo);
+        System.out.printf("Nombre: %s, ", nombre);
+        System.out.printf("Cantidad: %d, ", cantidad);
+        System.out.printf("Precio: %.2f, ", precio);
     }
 
     public void imprimirEnvio(){

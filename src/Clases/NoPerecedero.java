@@ -17,5 +17,6 @@ public abstract class NoPerecedero extends Producto{
     public void imprimir(){
 
         super.imprimir();
+        System.out.printf("(Producto no perecedero), ");
     }
 }

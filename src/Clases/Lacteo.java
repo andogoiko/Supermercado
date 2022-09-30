@@ -56,6 +56,6 @@ public class Lacteo extends  Perecedero{
     public void imprimir(){
         super.imprimir();
 
-        System.out.printf("Lote: %s\n", lote);
+        System.out.printf("Producto Lácteo: %s\n", lote);
     }
 }

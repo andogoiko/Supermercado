@@ -45,6 +45,7 @@ public class Herramienta extends NoPerecedero implements Enviable {
 
     public void imprimir(){
         super.imprimir();
+        System.out.printf("Herramienta\n");
     }
 
     @Override

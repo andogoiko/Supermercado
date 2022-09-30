@@ -51,7 +51,7 @@ public class Otros extends NoPerecedero{
     public void imprimir(){
         super.imprimir();
 
-        System.out.printf("Categoría: %s\n", categoria);
+        System.out.printf("Producto de categoría: %s\n", categoria);
     }
 
 }

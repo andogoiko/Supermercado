@@ -2,6 +2,8 @@ package Clases;
 
 import Interfaces.Enviable;
 
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -29,38 +31,107 @@ public class Inventario implements Iterable<Producto>{
 
     public static void cargarProductos(){
 
-        Producto p0 = new Herramienta(  999999,  "0",  0,  0,  0);
-        Producto p1 = new Lacteo(  1,  "Queso-Cheedar",  1.50,  14,  20 ,"21/09/2022" ,"210");
-        Producto p2 = new Lacteo(  2,  "Leche-Kaiku",  0.50,  34,  29 ,"23/09/2022" ,"111");
-        Producto p3 = new Lacteo(  3,  "Yogur-Danone ",  0.40,  10,  17,"20/09/2022" ,"421");
-        Producto p4 = new Bebida(  4,  "CocaCola",  2.50,  40,  4 ,"21/09/2022","0");
-        Producto p5 = new Bebida(  5,  "Heineken 0.0",  2.00,  40,  4 ,"21/09/2022","0");
-        Producto p6 = new Bebida(  6,  "Heineken",  2.50,  40,  4 ,"21/09/2022","4.3");
-        Producto p7 = new FrutaHortaliza(  7,  "Esparragos",  1.50,  33,  10,"21/09/2022","Peru");
-        Producto p8 = new FrutaHortaliza(  8,  "Alcachofas",  3.50,  12,  6,"21/09/2022","Tudela");
-        Producto p9 = new FrutaHortaliza(  9,  "Acelgas",  2.50,  65,  25,"21/09/2022","La Rioja");
-        Producto p10 = new Herramienta(  10,  "Martillo",  12.50,  35,  36);
-        Producto p11 = new Herramienta(  11,  "Destornillador",  10.50,  45,  15);
-        Producto p12 = new Herramienta(  12,  "Taladro",  68.00,  15,  40);
+        System.out.println("========================================================================");
+        System.out.println("=                        CARGANDO PRODUCTOS ...                        =");
+        System.out.println("========================================================================");
 
-        addNuevoProducto(p0);
-        addNuevoProducto(p1);
-        addNuevoProducto(p2);
-        addNuevoProducto(p3);
-        addNuevoProducto(p4);
-        addNuevoProducto(p5);
-        addNuevoProducto(p6);
-        addNuevoProducto(p7);
-        addNuevoProducto(p8);
-        addNuevoProducto(p9);
-        addNuevoProducto(p10);
-        addNuevoProducto(p11);
-        addNuevoProducto(p12);
+        try{
+
+            //el fichero al que nos referimos
+
+            File dataFile = new File("src/data/productos.txt");
+
+            // al estar en java no nos hace falta processbuilder ni nada directamente buffered reader
+
+            // la encapsulamos en un buffered reader para que se formatee
+
+            BufferedReader bfr = new BufferedReader(new FileReader(dataFile));
+
+            String productos;
+
+            while ((productos = bfr.readLine()) != null){
+                String[] producto = productos.split(" ");
+                try{
+                    switch (producto[producto.length - 1].toLowerCase()){
+
+                        case "frutahortaliza":
+
+                            Producto frutahortaliza = new FrutaHortaliza(  Integer.parseInt(producto[0]),  producto[1],  Double.parseDouble(producto[2]),  Integer.parseInt(producto[3]),  Double.parseDouble(producto[4]), producto[5], producto[6]);
+                            addNuevoProducto(frutahortaliza);
+
+                            break;
+
+                        case "lacteo":
+
+                            Producto lacteo = new Lacteo(  Integer.parseInt(producto[0]),  producto[1],  Double.parseDouble(producto[2]),  Integer.parseInt(producto[3]),  Double.parseDouble(producto[4]) , producto[5] , producto[6]);
+                            addNuevoProducto(lacteo);
+
+                            break;
+
+                        case "bebida":
+
+                            Producto bebida = new Bebida(  Integer.parseInt(producto[0]),  producto[1],  Double.parseDouble(producto[2]),  Integer.parseInt(producto[3]),  Double.parseDouble(producto[4]) , producto[5], producto[6]);
+                            addNuevoProducto(bebida);
+
+                            break;
+
+                        case "herramienta":
+
+                            Producto herramienta = new Herramienta(  Integer.parseInt(producto[0]),  producto[1],  Double.parseDouble(producto[2]),  Integer.parseInt(producto[3]),  Double.parseDouble(producto[4]));
+                            addNuevoProducto(herramienta);
+
+                            break;
+
+                        case "otros":
+
+                            Producto otros = new Otros(  Integer.parseInt(producto[0]),  producto[1],  Double.parseDouble(producto[2]),  Integer.parseInt(producto[3]),  Double.parseDouble(producto[4]), producto[5]);
+                            addNuevoProducto(otros);
+
+                            break;
+                    }
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+
+            bfr.close();
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        System.out.println("========================================================================");
+        System.out.println("=                     CARGA DE PRODUCTOS COMPLETA                      =");
+        System.out.println("========================================================================");
 
     }
 
     public static void guardarProductos(){
 
+        String productos = "";
+
+        for(int i = 0; i < listaProductos.size(); i++){
+            productos = productos + listaProductos.get(i).volcar();
+        }
+
+        try  {
+
+            FileOutputStream  archivo = new FileOutputStream ("src/data/productosSave.txt");
+
+            OutputStreamWriter archivoEncodeado= new OutputStreamWriter((archivo), StandardCharsets.ISO_8859_1);
+
+            BufferedWriter out = new BufferedWriter(archivoEncodeado);
+
+            out.write(productos);
+
+            out.close();
+            archivoEncodeado.close();
+            archivo.close();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public static void addNuevoProducto(Producto producto){
@@ -79,7 +150,7 @@ public class Inventario implements Iterable<Producto>{
 
     public static Producto getProducto(int id){
 
-        return listaProductos.get(id);
+        return listaProductos.get(id - 1);
     }
 
     public static void actualizarCantidad(int codigo, int cantidad){
@@ -95,7 +166,12 @@ public class Inventario implements Iterable<Producto>{
     public static void mostrarProductosEnviables(){
         listaProductos.forEach(producto -> {
             if(producto != null &&  producto instanceof Enviable){
-                System.out.printf("Código: %i, Nombre: %s, peso: %d, precio: %d, stock: %i", producto.getCodigo(), producto.getNombre(), producto.getPeso(), producto.getPrecio(), producto.getCantidad());
+                if(!((Enviable) producto).envioFragil()){
+                    System.out.printf("Id: %d, Nombre: %s, peso: %.1f, IVA (%.2f%s), tarifa de envío: %.2f, PRECIO-TOTAL: %.2f\n", producto.getCodigo(), producto.getNombre(), producto.getPeso(), producto.getIva(), new String(new char[] { 37 }), ((Enviable) producto).tarifaEnvio(), (producto.calcularPrecioIVA() + ((Enviable) producto).tarifaEnvio()));
+                }else{
+                    System.out.printf("Id: %d, Nombre: %s, peso: %.1f, IVA (%.2f%s), tarifa de envío: %.2f, Producto frágil, PRECIO-TOTAL: %.2f\n", producto.getCodigo(), producto.getNombre(), producto.getPeso(), producto.getIva(), new String(new char[] { 37 }), ((Enviable) producto).tarifaEnvio(), (producto.calcularPrecioIVA() + ((Enviable) producto).tarifaEnvio()));
+                }
+
             }
         });
     }

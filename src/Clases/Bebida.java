@@ -5,17 +5,20 @@ import java.util.Scanner;
 public class Bebida extends Perecedero{
 
     private String graduacion;
-    private double VALOR_IVA = 0.16;
+    private final double VALOR_IVA = 0.16;
+    private final boolean esFragil = false;
 
     public Bebida(int codigo, String nombre, double precio, int cantidad, double peso, String fechacad, String graduacion) {
         super(codigo, nombre, precio, cantidad, peso, fechacad);
         this.graduacion = graduacion;
+
+        setIva(VALOR_IVA);
     }
 
     public Bebida(Scanner in) {
         super(in);
 
-        System.out.println("Introduce una graduación:");
+        System.out.println("Introduce la graduación del producto:");
 
         while (true){
 
@@ -24,10 +27,11 @@ public class Bebida extends Perecedero{
                 break;
             }catch (Exception e){
                 System.out.println("Graduación incorrecta, vuelva a introducirla");
-                in.nextLine();
             }
 
         }
+
+        setIva(VALOR_IVA);
     }
 
     @Override
@@ -35,7 +39,7 @@ public class Bebida extends Perecedero{
     public String volcar(){
         String respuesta = super.volcar();
 
-        respuesta = respuesta + "Graduación del producto: " + graduacion + "\n";
+        respuesta = respuesta + " " + graduacion + " Bebida\n";
 
 
         return respuesta;
@@ -47,12 +51,12 @@ public class Bebida extends Perecedero{
 
         super.imprimir();
 
-        System.out.printf("Graduación: %d\n", graduacion);
+        System.out.printf("Graduación: %s\n", graduacion);
     }
 
     @Override
 
     public boolean envioFragil(){
-        return false;
+        return esFragil;
     }
 }

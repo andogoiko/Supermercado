@@ -5,18 +5,21 @@ import java.util.Scanner;
 public class Otros extends NoPerecedero{
 
     private String categoria;
-    private double VALOR_IVA = 0.16;
+    private final double VALOR_IVA = 0.16;
 
     public Otros(int codigo, String nombre, double precio, int cantidad, double peso, String categoria) {
 
         super(codigo, nombre, precio, cantidad, peso);
         this.categoria = categoria;
+
+        setIva(VALOR_IVA);
+
     }
 
     public Otros(Scanner in){
         super(in);
 
-        System.out.println("Introduce una categoría:");
+        System.out.println("Introduce la categoría del producto:");
 
         while (true){
 
@@ -25,10 +28,11 @@ public class Otros extends NoPerecedero{
                 break;
             }catch (Exception e){
                 System.out.println("Categoria incorrecta, vuelva a introducirla");
-                in.nextLine();
             }
 
         }
+
+        setIva(VALOR_IVA);
     }
 
     @Override
@@ -37,7 +41,7 @@ public class Otros extends NoPerecedero{
 
         String respuesta = super.volcar();
 
-        respuesta = respuesta + "Categoría del producto: " + categoria + "\n";
+        respuesta = respuesta + " " + categoria + " Otros\n";
 
         return respuesta;
     }
@@ -47,7 +51,7 @@ public class Otros extends NoPerecedero{
     public void imprimir(){
         super.imprimir();
 
-        System.out.printf("Categoría: %d\n", categoria);
+        System.out.printf("Categoría: %s\n", categoria);
     }
 
 }

@@ -21,21 +21,9 @@ public abstract class Producto {
 
     public Producto(Scanner in){
 
-        System.out.println("Introduce un código:");
+        codigo = Inventario.tamanyo() + 1;
 
-        while (true){
-
-            try{
-                codigo = in.nextInt();
-                break;
-            }catch (Exception e){
-                System.out.println("Código incorrecto, vuelva a introducirlo");
-                in.nextLine();
-            }
-
-        }
-
-        System.out.println("Introduce un nombre:");
+        System.out.println("Introduce el nombre del producto (string):");
 
         while (true){
 
@@ -44,12 +32,11 @@ public abstract class Producto {
                 break;
             }catch (Exception e){
                 System.out.println("nombre incorrecto, vuelva a introducirlo");
-                in.nextLine();
             }
 
         }
 
-        System.out.println("Introduce un precio:");
+        System.out.println("Introduce el precio del producto por unidad en €:");
 
         while (true){
 
@@ -58,12 +45,13 @@ public abstract class Producto {
                 break;
             }catch (Exception e){
                 System.out.println("Precio incorrecto, vuelva a introducirlo");
+            }finally {
                 in.nextLine();
             }
 
         }
 
-        System.out.println("Introduce una cantidad:");
+        System.out.println("Introduce la cantidad (número de unidades):");
 
         while (true){
 
@@ -72,12 +60,13 @@ public abstract class Producto {
                 break;
             }catch (Exception e){
                 System.out.println("Cantidad incorrecta, vuelva a introducirlo");
+            }finally {
                 in.nextLine();
             }
 
         }
 
-        System.out.println("Introduce un peso:");
+        System.out.println("Introduce el peso del producto por unidad (en kg):");
 
         while (true){
 
@@ -86,6 +75,7 @@ public abstract class Producto {
                 break;
             }catch (Exception e){
                 System.out.println("Peso incorrecto, vuelva a introducirlo");
+            }finally {
                 in.nextLine();
             }
 
@@ -149,19 +139,19 @@ public abstract class Producto {
     }
 
     public void imprimir(){
-        System.out.printf("Producto número: %i\n", codigo);
+        System.out.printf("Producto número: %d\n", codigo);
         System.out.printf("Nombre del producto: %s\n", nombre);
-        System.out.printf("Precio del producto: %d\n", precio);
-        System.out.printf("stock: %i\n", cantidad);
-        System.out.printf("peso: %d\n", peso);
+        System.out.printf("Precio del producto: %f\n", precio);
+        System.out.printf("stock: %d\n", cantidad);
+        System.out.printf("peso: %f\n", peso);
     }
 
     public void imprimirEnvio(){
 
         System.out.printf("Producto: %s\n", nombre);
-        System.out.printf("Producto número: %d\n", peso);
-        System.out.printf("Precio del producto: %d\n", precio);
-        System.out.printf("Precio IVA incluído: %d\n", calcularPrecioIVA());
+        System.out.printf("Producto número: %f\n", peso);
+        System.out.printf("Precio del producto: %f\n", precio);
+        System.out.printf("Precio IVA incluído: %f\n", calcularPrecioIVA());
 
     }
 
@@ -169,11 +159,7 @@ public abstract class Producto {
 
         String productInfo = "";
 
-        productInfo = productInfo + "Producto número: " +  codigo + "\n";
-        productInfo = productInfo + "Nombre del producto: " + nombre + "\n";
-        productInfo = productInfo + "Precio del producto: " + precio + "\n";
-        productInfo = productInfo + "Producto número: " + cantidad + "\n";
-        productInfo = productInfo + "Producto número: " + peso + "\n";
+        productInfo = getCodigo() + " " + getNombre() + " " + getPrecio() + " " + getCantidad() + " " + getPeso();
 
         return productInfo;
     }

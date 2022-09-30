@@ -5,17 +5,20 @@ import java.util.Scanner;
 public class Lacteo extends  Perecedero{
 
     private String lote;
-    private double VALOR_IVA = 0.04;
+    private final double VALOR_IVA = 0.04;
+    private final boolean esFragil = false;
 
     public Lacteo(int codigo, String nombre, double precio, int cantidad, double peso, String fechacad, String lote) {
         super(codigo, nombre, precio, cantidad, peso, fechacad);
         this.lote = lote;
+
+        setIva(VALOR_IVA);
     }
 
     public Lacteo(Scanner in) {
         super(in);
 
-        System.out.println("Introduce un lote:");
+        System.out.println("Introduce el lote del producto:");
 
         while (true){
 
@@ -24,10 +27,11 @@ public class Lacteo extends  Perecedero{
                 break;
             }catch (Exception e){
                 System.out.println("Lote incorrecto, vuelva a introducirlo");
-                in.nextLine();
             }
 
         }
+
+        setIva(VALOR_IVA);
     }
 
     @Override
@@ -35,8 +39,7 @@ public class Lacteo extends  Perecedero{
     public String volcar(){
         String respuesta = super.volcar();
 
-        respuesta = respuesta + "Lote del producto: " + lote + "\n";
-
+        respuesta = respuesta + " " + lote + " Lacteo\n";
 
         return respuesta;
     }
@@ -45,7 +48,7 @@ public class Lacteo extends  Perecedero{
 
     public boolean envioFragil(){
 
-        return false;
+        return esFragil;
     }
 
     @Override
@@ -53,6 +56,6 @@ public class Lacteo extends  Perecedero{
     public void imprimir(){
         super.imprimir();
 
-        System.out.printf("Lote: %d\n", lote);
+        System.out.printf("Lote: %s\n", lote);
     }
 }

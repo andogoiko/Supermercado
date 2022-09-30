@@ -7,6 +7,8 @@ import java.util.Scanner;
 public abstract class Perecedero extends Producto implements Enviable {
 
     private String fechacad;
+    private final double TARIFA_ENVIO = 1.71;
+    private final boolean esFragil = false;
 
     public Perecedero(int codigo, String nombre, double precio, int cantidad, double peso, String fechacad) {
 
@@ -17,7 +19,7 @@ public abstract class Perecedero extends Producto implements Enviable {
     public Perecedero (Scanner in){
         super(in);
 
-        System.out.println("Introduce una fecha de caducidad:");
+        System.out.println("Introduce la fecha de caducidad del producto (--/--/--):");
 
         while (true){
 
@@ -26,7 +28,6 @@ public abstract class Perecedero extends Producto implements Enviable {
                 break;
             }catch (Exception e){
                 System.out.println("fecha incorrecta, vuelva a introducirla");
-                in.nextLine();
             }
 
         }
@@ -37,7 +38,7 @@ public abstract class Perecedero extends Producto implements Enviable {
 
     public double tarifaEnvio(){
 
-        return super.calcularPrecioIVA();
+        return TARIFA_ENVIO;
     }
 
     @Override
@@ -45,7 +46,7 @@ public abstract class Perecedero extends Producto implements Enviable {
     public void imprimir(){
         super.imprimir();
 
-        System.out.printf("fecha de caducidad: %d\n", fechacad);
+        System.out.printf("fecha de caducidad: %s\n", fechacad);
     }
 
     @Override
@@ -54,7 +55,7 @@ public abstract class Perecedero extends Producto implements Enviable {
 
         String respuesta = super.volcar();
 
-        respuesta = respuesta + "Fecha de caducidad del producto: " + fechacad + "\n";
+        respuesta = respuesta + " " + fechacad;
 
 
         return respuesta;
@@ -70,7 +71,7 @@ public abstract class Perecedero extends Producto implements Enviable {
 
     public boolean envioFragil(){
 
-        return false;
+        return esFragil;
     }
 
     @Override
